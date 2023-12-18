@@ -1,9 +1,11 @@
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { AddButton, Form } from './contacts-form.styled';
+import { FieldLabel, Form } from './contacts-form.styled';
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { useContacts } from 'hooks/useContacts';
+import { Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 const contactSchema = Yup.object().shape({
   userName: Yup.string()
@@ -33,7 +35,6 @@ export const ContactForm = () => {
           const existContact = contacts.find(
             contact => contact.name.toLowerCase() === userName.toLowerCase()
           );
-
           if (existContact) {
             alert(`${userName} is already in contacts`);
           } else {
@@ -43,19 +44,26 @@ export const ContactForm = () => {
         }}
       >
         <Form>
-          <label htmlFor="userName">
+          <FieldLabel htmlFor="userName">
             Name
             <Field id="userName" type="text" name="userName" />
             <ErrorMessage name="userName" />
-          </label>
+          </FieldLabel>
 
-          <label htmlFor="userNumber">
+          <FieldLabel htmlFor="userNumber">
             Number
             <Field id="userNumber" name="userNumber" />
             <ErrorMessage name="userNumber" />
-          </label>
-
-          <AddButton type="submit">Add contact</AddButton>
+          </FieldLabel>
+          <Button
+            type="submit"
+            variant="contained"
+            endIcon={<AddIcon />}
+            style={{ width: '169px', height: '30px' }}
+            color="success"
+          >
+            Add contact
+          </Button>
         </Form>
       </Formik>
     </>

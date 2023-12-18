@@ -1,6 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import { login } from 'redux/auth/operations';
+import { FieldLabel, Form } from './loginForm.styled';
+import { Button } from '@mui/material';
+import LoginIcon from '@mui/icons-material/Login';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -21,8 +24,8 @@ export const LoginForm = () => {
       }}
     >
       <Form>
-        <label htmlFor="userEmail">
-          Set your email
+        <FieldLabel htmlFor="userEmail">
+          Enter your email
           <Field
             id="userEmail"
             name="userEmail"
@@ -30,9 +33,9 @@ export const LoginForm = () => {
             placeholder="Email"
           />
           <ErrorMessage name="userEmail" />
-        </label>
-        <label htmlFor="userPassword">
-          Set password
+        </FieldLabel>
+        <FieldLabel htmlFor="userPassword">
+          Enter password
           <Field
             id="userPassword"
             name="userPassword"
@@ -40,8 +43,16 @@ export const LoginForm = () => {
             placeholder="Password"
           />
           <ErrorMessage name="userPassword" />
-        </label>
-        <button type="submit">Log IN</button>
+        </FieldLabel>
+        <Button
+          type="submit"
+          variant="contained"
+          endIcon={<LoginIcon />}
+          style={{ width: '169px', height: '30px' }}
+          color="success"
+        >
+          Log IN
+        </Button>
       </Form>
     </Formik>
   );
