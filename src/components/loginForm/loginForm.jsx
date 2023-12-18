@@ -41,7 +41,7 @@ export const LoginForm = () => {
           />
           <ErrorMessage name="userPassword" />
         </label>
-        <button type="submit">Login</button>
+        <button type="submit">Log IN</button>
       </Form>
     </Formik>
   );
